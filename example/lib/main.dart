@@ -24,7 +24,7 @@ class _MyAppState extends State<MyApp> {
     String platformVersion;
     try {
       platformVersion = await FlutterAudio.platformVersion;
-      FlutterAudio.play("https://filebin.net/jcry4fmx12edijdu/test.mp3?t=nih2402n");
+      FlutterAudio.play("https://filebin.net/jcry4fmx12edijdu/test.mp3?t=1ucxg1c3");
     } on PlatformException {
       platformVersion = 'Failed to get platform version.';
     }
