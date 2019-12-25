@@ -24,7 +24,6 @@ class _MyAppState extends State<MyApp> {
     String platformVersion;
     try {
       platformVersion = await FlutterAudio.platformVersion;
-      FlutterAudio.play("https://filebin.net/jcry4fmx12edijdu/test.mp3?t=1ucxg1c3");
     } on PlatformException {
       platformVersion = 'Failed to get platform version.';
     }
@@ -40,13 +39,39 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
-        appBar: AppBar(
-          title: const Text('Plugin example app'),
-        ),
-        body: Center(
-          child: Text('Running on: $_platformVersion\n'),
-        ),
-      ),
+          appBar: AppBar(
+            title: const Text('Plugin example app'),
+          ),
+          body: Row(
+            children: <Widget>[
+              Expanded(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: <Widget>[
+                    RaisedButton(
+                      child: Text("Play"),
+                      onPressed: play,
+                    ),
+                    RaisedButton(
+                      child: Text("Stop"),
+                      onPressed: stop,
+                    )
+                  ],
+                ),
+              )
+            ],
+          )),
     );
   }
+
+  play() async {
+    await FlutterAudio.play("https://filebin.net/jcry4fmx12edijdu/test.mp3?t=1ucxg1c3");
+    print("clicked play");
+  }
+
+  stop() {
+    print("clicked stop");
+  }
+
 }
