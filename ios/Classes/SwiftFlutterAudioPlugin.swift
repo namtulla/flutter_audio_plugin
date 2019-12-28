@@ -5,11 +5,13 @@ import AVFoundation
 public class SwiftFlutterAudioPlugin: NSObject, FlutterPlugin {
     
     var audioPlayer = AVPlayer()
+    var registrar: FlutterPluginRegistrar? = nil
     
   public static func register(with registrar: FlutterPluginRegistrar) {
     let channel = FlutterMethodChannel(name: "flutter_audio", binaryMessenger: registrar.messenger())
     let instance = SwiftFlutterAudioPlugin()
     registrar.addMethodCallDelegate(instance, channel: channel)
+    instance.registrar = registrar
   }
 
   public func handle(_ call: FlutterMethodCall, result: @escaping FlutterResult) {
@@ -24,14 +26,16 @@ public class SwiftFlutterAudioPlugin: NSObject, FlutterPlugin {
         let path = myArgs?["path"] as? String
         
         if let unwrapped = path {
-            guard let url = URL.init(string: unwrapped) else { return }
+            let key = registrar?.lookupKey(forAsset: unwrapped)
+            let p = Bundle.main.path(forResource: key, ofType: nil)!
+            let url = URL(fileURLWithPath: p)
+            
             let playerItem = AVPlayerItem(url: url)
             self.audioPlayer = AVPlayer(playerItem: playerItem)
             self.audioPlayer.volume = 1.0
             self.audioPlayer.play()
         }
-        
-        result("yay")
     }
   }
+    
 }
