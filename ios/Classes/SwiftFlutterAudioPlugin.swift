@@ -35,6 +35,9 @@ public class SwiftFlutterAudioPlugin: NSObject, FlutterPlugin {
             self.audioPlayer.volume = 1.0
             self.audioPlayer.play()
         }
+    } else if (call.method == "stop") {
+        self.audioPlayer.pause()
+        self.audioPlayer.rate = 0.0
     }
   }
     
