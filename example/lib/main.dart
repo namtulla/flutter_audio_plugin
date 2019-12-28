@@ -12,27 +12,10 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  String _platformVersion = 'Unknown';
 
   @override
   void initState() {
     super.initState();
-    initPlatformState();
-  }
-
-  Future<void> initPlatformState() async {
-    String platformVersion;
-    try {
-      platformVersion = await FlutterAudio.platformVersion;
-    } on PlatformException {
-      platformVersion = 'Failed to get platform version.';
-    }
-
-    if (!mounted) return;
-
-    setState(() {
-      _platformVersion = platformVersion;
-    });
   }
 
   @override
@@ -66,11 +49,12 @@ class _MyAppState extends State<MyApp> {
   }
 
   play() async {
-    await FlutterAudio.play("https://filebin.net/jcry4fmx12edijdu/test.mp3?t=1ucxg1c3");
+    await FlutterAudio.play("assets/test.mp3");
     print("clicked play");
   }
 
-  stop() {
+  stop() async {
+    await FlutterAudio.stop();
     print("clicked stop");
   }
 
