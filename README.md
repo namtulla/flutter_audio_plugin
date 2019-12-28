@@ -1,5 +1,5 @@
 # flutter_audio
-Play local mp3's on both IOS and Android
+A Flutter Plugin to play local mp3's on both IOS and Android
 (Wait until version 1.0 before using this plugin)
 
 ## Getting Started
