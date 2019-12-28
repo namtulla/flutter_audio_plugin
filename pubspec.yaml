@@ -1,8 +1,7 @@
 name: flutter_audio
-description: A new Flutter plugin.
+description: A plugin to play mp3 files from local assets.
 version: 0.0.1
-author:
-homepage:
+homepage: https://github.com/chadalen/flutter_audio_plugin
 
 environment:
   sdk: ">=2.1.0 <3.0.0"
