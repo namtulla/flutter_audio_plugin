@@ -45,6 +45,9 @@ class FlutterAudioPlugin(private val registrar: Registrar): MethodCallHandler {
           val key = registrar.lookupKeyForAsset(path)
           assetManager.openFd(key)
                   .use { fd ->
+                    if (mediaPlayer != null) {
+                      stop()
+                    }
                     mediaPlayer = MediaPlayer()
                     mediaPlayer?.setDataSource(fd.fileDescriptor, fd.startOffset, fd.length)
                     mediaPlayer?.prepare()
@@ -56,9 +59,7 @@ class FlutterAudioPlugin(private val registrar: Registrar): MethodCallHandler {
       }
 
       "stop" -> {
-        mediaPlayer?.stop()
-        mediaPlayer?.release()
-        mediaPlayer = null
+        stop()
       }
 
       else -> {
@@ -66,6 +67,12 @@ class FlutterAudioPlugin(private val registrar: Registrar): MethodCallHandler {
       }
     }
 
+  }
+
+  private fun stop() {
+    mediaPlayer?.stop()
+    mediaPlayer?.release()
+    mediaPlayer = null
   }
 
 }
