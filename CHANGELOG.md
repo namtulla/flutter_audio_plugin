@@ -1,3 +1,2 @@
 ## 0.0.1
-
-* TODO: Describe initial release.
+* Can now play local mp3's from assets/ directory on both IOS and Android.
