@@ -14,6 +14,10 @@ class FlutterAudio {
     await _channel.invokeMethod('play', params);
   }
 
+  static Future<void> pause() async {
+    await _channel.invokeMethod('pause');
+  }
+
   static Future<void> stop() async {
     await _channel.invokeMethod('stop');
   }

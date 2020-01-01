@@ -1,7 +1,4 @@
 import 'package:flutter/material.dart';
-import 'dart:async';
-
-import 'package:flutter/services.dart';
 import 'package:flutter_audio/flutter_audio.dart';
 
 void main() => runApp(MyApp());
@@ -12,7 +9,6 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-
   @override
   void initState() {
     super.initState();
@@ -34,11 +30,15 @@ class _MyAppState extends State<MyApp> {
                   children: <Widget>[
                     RaisedButton(
                       child: Text("Play"),
-                      onPressed: play,
+                      onPressed: onPlay,
+                    ),
+                    RaisedButton(
+                      child: Text("Pause"),
+                      onPressed: onPause,
                     ),
                     RaisedButton(
                       child: Text("Stop"),
-                      onPressed: stop,
+                      onPressed: onStop,
                     )
                   ],
                 ),
@@ -48,14 +48,15 @@ class _MyAppState extends State<MyApp> {
     );
   }
 
-  play() async {
+  onPlay() async {
     await FlutterAudio.play("assets/test.mp3");
-    print("clicked play");
   }
 
-  stop() async {
+  onStop() async {
     await FlutterAudio.stop();
-    print("clicked stop");
   }
 
+  onPause() async {
+    await FlutterAudio.pause();
+  }
 }

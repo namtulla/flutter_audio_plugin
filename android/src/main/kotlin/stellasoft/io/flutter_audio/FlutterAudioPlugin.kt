@@ -62,6 +62,10 @@ class FlutterAudioPlugin(private val registrar: Registrar): MethodCallHandler {
         stop()
       }
 
+      "pause" -> {
+        mediaPlayer?.pause()
+      }
+
       else -> {
         result.notImplemented()
       }
